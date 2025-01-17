@@ -1,14 +1,11 @@
 package dayOne;
 
-import javax.lang.model.type.IntersectionType;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Main {
+public class DayOne {
     public static void main(String[] args) throws Exception {
 //        String content = URLConnectionReader.getText("https://adventofcode.com/2024/day/1/input");
 //        System.out.println(content);
