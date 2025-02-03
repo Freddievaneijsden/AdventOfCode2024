@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class DayTwo {
 
     public static void main(String[] args) {
-        final String textFile = "test.txt";
+        final String textFile = "dayTwoInput.txt";
         List<String> dayTwoInput = new ArrayList<>();
         List<List<String>> reportListString = new ArrayList<>();
         List<List<Integer>> safeReports = new ArrayList<>();
@@ -26,7 +26,8 @@ public class DayTwo {
         for (int i = 0; i < reportList.size(); i++) {
             saveSafeReport(reportList.get(i), safeReports);
         }
-        safeReports.forEach(System.out::println);
+
+        System.out.println("Number of safe reports: " + safeReports.size());
     }
 
     private static void splitStringBySpaceAndSaveInListOfLists(List<String> dayTwoInput, List<List<String>> reportListString) {
