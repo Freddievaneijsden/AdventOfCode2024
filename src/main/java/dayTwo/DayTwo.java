@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class DayTwo {
 
@@ -20,10 +19,9 @@ public class DayTwo {
 
         List<List<Integer>> reportList = convertListOfListsWithStringToInteger(reportListString);
 
-//        System.out.println(checkIfReportIsSafe(reportList.get(5)));
-        System.out.println(doesReportLevelsBothIncreaseAndDecrease(reportList.get(5
-
-        reportList.forEach(System.out::println);
+        for (int i = 0; i < reportList.size(); i++) {
+            System.out.println(checkIfReportIsSafe(reportList.get(i)));
+        }
     }
 
     private static void splitStringBySpaceAndSaveInListOfLists(List<String> dayTwoInput, List<List<String>> reportListString) {
@@ -65,7 +63,7 @@ public class DayTwo {
         return reportList;
     }
 
-    private static boolean isLevelsIncreasing(List<Integer> report) {
+    private static boolean areLevelsIncreasingOrDecreasing(List<Integer> report) {
         for (int i = 0; i < report.size() - 1; i++) {
             if (report.get(i) <= report.get(i+1)) {
                 int diff = Math.abs(report.get(i) - report.get(i + 1));
@@ -75,6 +73,15 @@ public class DayTwo {
                     return false;
                 }
                 System.out.println("Number: " + report.get(i) + " = valid increase (by " + diff + ")");
+            }
+            if (report.get(i) >= report.get(i+1)) {
+                int diff = Math.abs(report.get(i) - report.get(i + 1));
+
+                if (diff > 3 || diff == 0) {
+                    System.out.println("Number: " + report.get(i) + " = invalid decrease (by " + diff + ")");
+                    return false;
+                }
+                System.out.println("Number: " + report.get(i) + " = valid decrease (by " + diff + ")");
             }
         }
         return true;
@@ -95,7 +102,7 @@ public class DayTwo {
         return true;
     }
 
-    private static boolean doesReportLevelsBothIncreaseAndDecrease(List<Integer> report) {
+    private static boolean shouldNotBothIncreaseAndDecrease(List<Integer> report) {
         int increaseCount = 0;
         int decreaseCount = 0;
         for (int i = 0; i < report.size() - 1; i++) {
@@ -107,11 +114,11 @@ public class DayTwo {
             }
         }
         System.out.println("Increase: " + increaseCount + " Decrease: " + decreaseCount);
-        return increaseCount > 0 && decreaseCount > 0;
+        return increaseCount == 0 || decreaseCount == 0;
     }
 
     private static boolean checkIfReportIsSafe(List<Integer> report) {
-        if (isLevelsIncreasing(report)) {
+        if (areLevelsIncreasingOrDecreasing(report) && shouldNotBothIncreaseAndDecrease(report)) {
             return true;
         }
         return false;
