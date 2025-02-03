@@ -13,6 +13,7 @@ public class DayTwo {
         final String textFile = "test.txt";
         List<String> dayTwoInput = new ArrayList<>();
         List<List<String>> reportListString = new ArrayList<>();
+        List<List<Integer>> safeReports = new ArrayList<>();
 
         scanEachLineToList(textFile, dayTwoInput);
         splitStringBySpaceAndSaveInListOfLists(dayTwoInput, reportListString);
@@ -27,7 +28,7 @@ public class DayTwo {
         for (String s : dayTwoInput) {
             List<String> singleReportListString;
             List<String> singleReportList = new ArrayList<>();
-            singleReportListString = List.of(s.split("\\s+"));
+            singleReportListString = java.util.List.of(s.split("\\s+"));
             for (int i = 0; i < singleReportListString.size(); i++) {
 //                singleReportList.add(Integer.parseInt(singleReportListString.get(i)));
                   singleReportList.add(singleReportListString.get(i));
@@ -78,5 +79,11 @@ public class DayTwo {
             return true;
         }
         return false;
+    }
+
+    private static void saveSafeReport (List<Integer> report, List<List<Integer>> safeReports) {
+        if (checkIfReportIsSafe(report)) {
+            safeReports.add(report);
+        }
     }
 }
