@@ -19,8 +19,8 @@ public class DayTwo {
 
         List<List<Integer>> reportList = convertListOfListsWithStringToInteger(reportListString);
 
+        System.out.println(isLevelsIncreasing(reportList.get(1)));
         reportList.forEach(System.out::println);
-        System.out.println(reportList.getFirst().getFirst() + reportList.get(0).get(1));
     }
 
     private static void splitStringBySpaceAndSaveInListOfLists(List<String> dayTwoInput, List<List<String>> reportListString) {
@@ -62,8 +62,13 @@ public class DayTwo {
         return reportList;
     }
 
-
-    private static boolean increasingLevelsOrNot(List<List<Integer>> reportListString) {
+    private static boolean isLevelsIncreasing(List<Integer> report) {
+        for (int i = 0; i < report.size() - 1; i++) {
+            if (report.get(i+1) > report.get(i) && (report.get(i+1) - report.get(i) >= 4) ) {
+                return false;
+            }
+            System.out.println("Number: " + report.get(i) + " = valid increase");
+        }
         return true;
     }
 }
