@@ -74,19 +74,19 @@ public class DayTwo {
                 int diff = Math.abs(report.get(i) - report.get(i + 1));
 
                 if (diff > 3 || diff == 0) {
-                    System.out.println("Number: " + report.get(i) + " = invalid increase (by " + diff + ")");
+//                    System.out.println("Number: " + report.get(i) + " = invalid increase (by " + diff + ")");
                     return false;
                 }
-                System.out.println("Number: " + report.get(i) + " = valid increase (by " + diff + ")");
+//                System.out.println("Number: " + report.get(i) + " = valid increase (by " + diff + ")");
             }
             if (report.get(i) >= report.get(i+1)) {
                 int diff = Math.abs(report.get(i) - report.get(i + 1));
 
                 if (diff > 3 || diff == 0) {
-                    System.out.println("Number: " + report.get(i) + " = invalid decrease (by " + diff + ")");
+//                    System.out.println("Number: " + report.get(i) + " = invalid decrease (by " + diff + ")");
                     return false;
                 }
-                System.out.println("Number: " + report.get(i) + " = valid decrease (by " + diff + ")");
+//                System.out.println("Number: " + report.get(i) + " = valid decrease (by " + diff + ")");
             }
         }
         return true;
@@ -103,7 +103,7 @@ public class DayTwo {
                 decreaseCount += 1;
             }
         }
-        System.out.println("Increase: " + increaseCount + " Decrease: " + decreaseCount);
+//        System.out.println("Increase: " + increaseCount + " Decrease: " + decreaseCount);
         return increaseCount == 0 || decreaseCount == 0;
     }
 
