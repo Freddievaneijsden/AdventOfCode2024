@@ -20,7 +20,9 @@ public class DayTwo {
 
         List<List<Integer>> reportList = convertListOfListsWithStringToInteger(reportListString);
 
-        System.out.println(checkIfReportIsSafe(reportList.get(5)));
+//        System.out.println(checkIfReportIsSafe(reportList.get(5)));
+        System.out.println(isLevelsIncreasing(reportList.get(5)));
+
         reportList.forEach(System.out::println);
     }
 
@@ -65,11 +67,30 @@ public class DayTwo {
 
     private static boolean isLevelsIncreasing(List<Integer> report) {
         for (int i = 0; i < report.size() - 1; i++) {
-            if (report.get(i) > report.get(i+1) && (report.get(i) - report.get(i+1) <= 4)) {
-                System.out.println("Number: " + report.get(i) + " = invalid increase");
-                return false;
+            if (report.get(i) < report.get(i+1)) {
+                int diff = Math.abs(report.get(i) - report.get(i + 1));
+
+                if (diff > 3 || diff == 0) {
+                    System.out.println("Number: " + report.get(i) + " = invalid increase (by " + diff + ")");
+                    return false;
+                }
+                System.out.println("Number: " + report.get(i) + " = valid increase (by " + diff + ")");
             }
-            System.out.println("Number: " + report.get(i) + " = valid increase");
+        }
+        return true;
+    }
+
+    private static boolean isLevelsDecreasing(List<Integer> report) {
+        for (int i = 0; i < report.size() - 1; i++) {
+            if (report.get(i) > report.get(i+1)) {
+                int diff = report.get(i) - report.get(i + 1);
+
+                if (diff > 3 || diff == 0) {
+                    System.out.println("Number: " + report.get(i) + " = invalid decrease (by " + diff + ")");
+                    return false;
+                }
+                System.out.println("Number: " + report.get(i) + " = valid decrease (by " + diff + ")");
+            }
         }
         return true;
     }
