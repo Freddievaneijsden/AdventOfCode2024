@@ -21,7 +21,7 @@ public class DayTwo {
         List<List<Integer>> reportList = convertListOfListsWithStringToInteger(reportListString);
 
 //        System.out.println(checkIfReportIsSafe(reportList.get(5)));
-        System.out.println(isLevelsIncreasing(reportList.get(5)));
+        System.out.println(isLevelsDecreasing(reportList.get(4)));
 
         reportList.forEach(System.out::println);
     }
@@ -67,7 +67,7 @@ public class DayTwo {
 
     private static boolean isLevelsIncreasing(List<Integer> report) {
         for (int i = 0; i < report.size() - 1; i++) {
-            if (report.get(i) < report.get(i+1)) {
+            if (report.get(i) <= report.get(i+1)) {
                 int diff = Math.abs(report.get(i) - report.get(i + 1));
 
                 if (diff > 3 || diff == 0) {
@@ -82,7 +82,7 @@ public class DayTwo {
 
     private static boolean isLevelsDecreasing(List<Integer> report) {
         for (int i = 0; i < report.size() - 1; i++) {
-            if (report.get(i) > report.get(i+1)) {
+            if (report.get(i) >= report.get(i+1)) {
                 int diff = report.get(i) - report.get(i + 1);
 
                 if (diff > 3 || diff == 0) {
