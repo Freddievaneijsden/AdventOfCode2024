@@ -19,9 +19,14 @@ public class DayTwo {
 
         List<List<Integer>> reportList = convertListOfListsWithStringToInteger(reportListString);
 
+//        for (int i = 0; i < reportList.size(); i++) {
+//            System.out.println(checkIfReportIsSafe(reportList.get(i)));
+//        }
+
         for (int i = 0; i < reportList.size(); i++) {
-            System.out.println(checkIfReportIsSafe(reportList.get(i)));
+            saveSafeReport(reportList.get(i), safeReports);
         }
+        safeReports.forEach(System.out::println);
     }
 
     private static void splitStringBySpaceAndSaveInListOfLists(List<String> dayTwoInput, List<List<String>> reportListString) {
