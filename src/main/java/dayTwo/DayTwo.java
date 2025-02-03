@@ -87,21 +87,6 @@ public class DayTwo {
         return true;
     }
 
-    private static boolean isLevelsDecreasing(List<Integer> report) {
-        for (int i = 0; i < report.size() - 1; i++) {
-            if (report.get(i) >= report.get(i+1)) {
-                int diff = report.get(i) - report.get(i + 1);
-
-                if (diff > 3 || diff == 0) {
-                    System.out.println("Number: " + report.get(i) + " = invalid decrease (by " + diff + ")");
-                    return false;
-                }
-                System.out.println("Number: " + report.get(i) + " = valid decrease (by " + diff + ")");
-            }
-        }
-        return true;
-    }
-
     private static boolean shouldNotBothIncreaseAndDecrease(List<Integer> report) {
         int increaseCount = 0;
         int decreaseCount = 0;
