@@ -19,16 +19,11 @@ public class DayTwoPartTwo {
 
         List<List<Integer>> reportList = convertListOfListsWithStringToInteger(reportListString);
 
-//        for (int i = 0; i < reportList.size(); i++) {
-//            System.out.println(checkIfReportIsSafe(reportList.get(i)));
-//        }
-
         for (int i = 0; i < reportList.size(); i++) {
             saveSafeWithProblemDampener(reportList.get(i), safeReports);
         }
 
         System.out.println("Number of safe reports: " + safeReports.size());
-//        System.out.println(isSafeWithProblemDampener(reportList.get(5)));
     }
 
     private static void splitStringBySpaceAndSaveInListOfLists(List<String> dayTwoInput, List<List<String>> reportListString) {
@@ -114,12 +109,6 @@ public class DayTwoPartTwo {
             return true;
         }
         return false;
-    }
-
-    private static void saveSafeReport (List<Integer> report, List<List<Integer>> safeReports) {
-        if (checkIfReportIsSafe(report)) {
-            safeReports.add(report);
-        }
     }
 
     private static void saveSafeWithProblemDampener (List<Integer> report, List<List<Integer>> safeReports) {
