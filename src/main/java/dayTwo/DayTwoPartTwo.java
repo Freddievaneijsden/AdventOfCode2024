@@ -19,11 +19,16 @@ public class DayTwoPartTwo {
 
         List<List<Integer>> reportList = convertListOfListsWithStringToInteger(reportListString);
 
+//        for (int i = 0; i < reportList.size(); i++) {
+//            System.out.println(checkIfReportIsSafe(reportList.get(i)));
+//        }
+
         for (int i = 0; i < reportList.size(); i++) {
-            saveSafeReport(reportList.get(i), safeReports);
+            saveSafeWithProblemDampener(reportList.get(i), safeReports);
         }
 
         System.out.println("Number of safe reports: " + safeReports.size());
+//        System.out.println(isSafeWithProblemDampener(reportList.get(5)));
     }
 
     private static void splitStringBySpaceAndSaveInListOfLists(List<String> dayTwoInput, List<List<String>> reportListString) {
@@ -67,19 +72,23 @@ public class DayTwoPartTwo {
 
     private static boolean areLevelsIncreasingOrDecreasing(List<Integer> report) {
         for (int i = 0; i < report.size() - 1; i++) {
-            if (report.get(i) <= report.get(i + 1)) {
+            if (report.get(i) <= report.get(i+1)) {
                 int diff = Math.abs(report.get(i) - report.get(i + 1));
 
                 if (diff > 3 || diff == 0) {
+//                    System.out.println("Number: " + report.get(i) + " = invalid increase (by " + diff + ")");
                     return false;
                 }
+//                System.out.println("Number: " + report.get(i) + " = valid increase (by " + diff + ")");
             }
-            if (report.get(i) >= report.get(i + 1)) {
+            if (report.get(i) >= report.get(i+1)) {
                 int diff = Math.abs(report.get(i) - report.get(i + 1));
 
                 if (diff > 3 || diff == 0) {
+//                    System.out.println("Number: " + report.get(i) + " = invalid decrease (by " + diff + ")");
                     return false;
                 }
+//                System.out.println("Number: " + report.get(i) + " = valid decrease (by " + diff + ")");
             }
         }
         return true;
@@ -89,13 +98,14 @@ public class DayTwoPartTwo {
         int increaseCount = 0;
         int decreaseCount = 0;
         for (int i = 0; i < report.size() - 1; i++) {
-            if (report.get(i) < report.get(i + 1)) {
+            if (report.get(i) < report.get(i+1)) {
                 increaseCount += 1;
             }
-            if (report.get(i) > report.get(i + 1)) {
+            if (report.get(i) > report.get(i+1)) {
                 decreaseCount += 1;
             }
         }
+//        System.out.println("Increase: " + increaseCount + " Decrease: " + decreaseCount);
         return increaseCount == 0 || decreaseCount == 0;
     }
 
@@ -106,9 +116,33 @@ public class DayTwoPartTwo {
         return false;
     }
 
-    private static void saveSafeReport(List<Integer> report, List<List<Integer>> safeReports) {
+    private static void saveSafeReport (List<Integer> report, List<List<Integer>> safeReports) {
         if (checkIfReportIsSafe(report)) {
             safeReports.add(report);
         }
     }
+
+    private static void saveSafeWithProblemDampener (List<Integer> report, List<List<Integer>> safeReports) {
+        if (safeWithProblemDampener(report)) {
+            safeReports.add(report);
+        }
+    }
+
+    private static boolean safeWithProblemDampener(List<Integer> report) {
+        if (checkIfReportIsSafe(report)) {
+            return true;
+        }
+
+        for (int i = 0; i < report.size(); i++) {
+            List<Integer> modifiedReport = new ArrayList<>(report);
+            modifiedReport.remove(i);
+
+            if (checkIfReportIsSafe(modifiedReport)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
+
