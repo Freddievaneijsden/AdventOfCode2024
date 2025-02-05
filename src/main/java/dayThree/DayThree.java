@@ -22,11 +22,11 @@ public class DayThree {
         dayThreeInput = fileToString(textFile);
 //        System.out.println(dayThreeInput);
 
-        Pattern pattern = Pattern.compile("mul\\([0-9]*,[0-9]*\\)");
+        Pattern pattern = Pattern.compile("mul\\(([0-9]*,[0-9]*)\\)");
         Matcher matcher = pattern.matcher(dayThreeInput);
 
         while (matcher.find()) {
-            uncorruptedMul.add(matcher.group());
+            uncorruptedMul.add(matcher.group(1));
         }
 
         uncorruptedMul.forEach(System.out::println);
