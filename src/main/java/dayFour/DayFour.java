@@ -12,13 +12,14 @@ public class DayFour {
 
     public static void main(String[] args) {
         final String textFile = "test.txt";
-        final List<String> board = new ArrayList<>();
-
+        final List<String> stringArray = new ArrayList<>();
+        List<char[]> board = new ArrayList<>();
+        
         File myObj = new File(textFile);
         try {
             Scanner reader = new Scanner(myObj);
             while (reader.hasNextLine()) {
-                board.add(reader.nextLine());
+                stringArray.add(reader.nextLine());
             }
             reader.close();
         }
@@ -27,7 +28,23 @@ public class DayFour {
             e.printStackTrace();
         }
 
-        board.forEach(System.out::println);
+        createMultidimensionalArray(stringArray, board);
 
+        System.out.println(board.get(0)[4]);
+    }
+
+    private static void createMultidimensionalArray(List<String> stringArray, List<char[]> board) {
+        for (int i = 0; i < stringArray.size(); i++) {
+                board.add(stringArray.get(i).toCharArray());
+        }
+    }
+
+    public static boolean findWord (List<String> board, String word) {
+        int rows = board.size();
+        int columns;
+        for (int i = 0; i < rows; i++) {
+        }
+
+        return false;
     }
 }
